@@ -1,0 +1,14 @@
+{
+  "name": "puppet-kibana",
+  "version": "0.0.1",
+  "author": "LandRegistry, Addi",
+  "summary": "A puppet module to manage the kibana install at the Land Registry",
+  "license": "MIT",
+  "source": "https://github.com/LandRegistry-Ops/puppet-kibana",
+  "project_page": "https://github.com/LandRegistry-Ops/puppet-kibana",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"lesaux-kibana4","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
