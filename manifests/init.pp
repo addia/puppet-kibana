@@ -52,7 +52,7 @@ class kibana (
   $service_enable                = 'true',
   $service_name                  = 'kibana',
   $elastic_vip                   = hiera('elk_stack_elastic_address'),
-  $elastic_url                   = 'http://$elastic_vip:9200',
+  $elastic_url                   = "http://els_cluster:9200",
   $elastic_cert                  = '/etc/nginx/ssl/elastic.crt',
   $elastic_key                   = '/etc/nginx/ssl/elastic.key',
   $elastic_password              = 'welcome1',
@@ -103,6 +103,13 @@ class kibana (
          ensure                      => present,
         },
       }
+    }
+
+    host { "ops-es-cluster":
+      ensure            => 'present',
+      target            => '/etc/hosts',
+      ip                => $elastic_vip,
+      host_aliases      => 'els_cluster'
     }
 
     file { "/etc/nginx/ssl":
