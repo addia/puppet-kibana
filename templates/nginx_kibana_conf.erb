@@ -20,11 +20,11 @@ server {
     listen 443;
     server_name <%= @kibana_server %>;
 
-    ssl_certificate             <%= @server_key %>;
-    ssl_certificate_key         <%= @server_cert %>;
+    ssl_certificate_key         <%= @server_key %>;
+    ssl_certificate             <%= @server_cert %>;
     ssl_protocols               TLSv1 TLSv1.1 TLSv1.2;
     
-    access_log                  /var/log/nginx/kibana-access.log  main;
+    access_log                  /var/log/nginx/kibana-access.log;
     error_log                   /var/log/nginx/kibana-error.log;
 
     location / {
