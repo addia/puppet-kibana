@@ -51,13 +51,14 @@ class kibana (
   $service_ensure                = 'true',
   $service_enable                = 'true',
   $service_name                  = 'kibana',
-  $elastic_vip                   = hiera('elk_stack_elastic_address')
+  $kibana_server                 = hiera('elk_stack_kibana_address'),
+  $elastic_vip                   = hiera('elk_stack_elastic_address'),
   $elastic_url                   = "http://${elastic_vip}:9200",
   $elastic_cert                  = '/etc/nginx/ssl/elastic.crt',
   $elastic_key                   = '/etc/nginx/ssl/elastic.key',
   $elastic_password              = 'welcome1',
   $elastic_username              = 'webops',
-  $kibana_index                  = '.kibana'
+  $kibana_index                  = '.kibana',
   $kibana_defaultAppId           = 'discover',
   $elastic_verify                = 'true',
   $elastic_ca                    = undef,
@@ -66,38 +67,37 @@ class kibana (
   ){
 
   class { 'kibana4':
-    version                      => ${version},
-    package_repo_version         => ${repo_version},
-    autoupgrade                  => ${auto_upgrade},
-    java_install                 => ${java_manage},
-    java_package                 => ${java_pkg},
-    datadir                      => ${data_dir},
+    version                      => $version,
+    package_repo_version         => $repo_version,
+    autoupgrade                  => $auto_upgrade,
+    java_install                 => $java_manage,
+    java_package                 => $java_pkg,
+    datadir                      => $data_dir,
     config                       => {
       'server.port'                  => 5601,
       'server.host'                  => '0.0.0.0',
-      'elasticsearch.url'            => ${elastic_url},
+      'elasticsearch.url'            => $elastic_url,
       'elasticsearch.preserveHost'   => true,
-      'elasticsearch.ssl.cert'       => ${elastic_cert},
-      'elasticsearch.ssl.key'        => ${elastic_key},
-      'elasticsearch.password'       => ${elastic_password},
-      'elasticsearch.username'       => ${elastic_username},
+      'elasticsearch.ssl.cert'       => $elastic_cert,
+      'elasticsearch.ssl.key'        => $elastic_key,
+      'elasticsearch.password'       => $elastic_password,
+      'elasticsearch.username'       => $elastic_username,
       'elasticsearch.pingTimeout'    => 1500,
       'elasticsearch.startupTimeout' => 5000,
-      'kibana.index'                 => ${kibana_index},
-      'kibana.defaultAppId'          => ${kibana_defaultAppId},
+      'kibana.index'                 => $kibana_index,
+      'kibana.defaultAppId'          => $kibana_defaultAppId,
       'logging.silent'               => false,
       'logging.quiet'                => false,
       'logging.verbose'              => false,
       'logging.events'               => "{ log: ['info', 'warning', 'error', 'fatal'], response: '*', error: '*' }",
       'elasticsearch.requestTimeout' => 500000,
       'elasticsearch.shardTimeout'   => 0,
-      'elasticsearch.ssl.verify'     => ${elastic_verify},
-      'elasticsearch.ssl.ca'         => ${elastic_ca},
-      'server.ssl.key'               => ${server_key},
-      'server.ssl.cert'              => ${server_cert},
+      'elasticsearch.ssl.verify'     => $elastic_verify,
+      'server.ssl.key'               => $server_key,
+      'server.ssl.cert'              => $server_cert,
       'pid.file'                     => '/var/run/kibana.pid',
       'logging.dest'                 => '/var/log/kibana/kibana.log'
-      }
+      },
     plugins                          => {
       'elasticsearch/marvel'         => {
         plugin_dest_dir              => 'marvel',
@@ -109,6 +109,54 @@ class kibana (
         },
       }
     }
+
+    file { "/etc/nginx/ssl":
+      ensure            => 'directory',
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0755',
+    }
+
+    file { $server_key:
+      ensure            => file,
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0644',
+      content           => hiera('elk_stack_kibana_key')
+    }
+
+    file { $server_cert:
+      ensure            => file,
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0644',
+      content           => hiera('elk_stack_kibana_cert')
+    }
+
+    file { $elastic_key:
+      ensure            => file,
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0644',
+      content           => hiera('elk_stack_elastic_key')
+    }
+
+    file { $elastic_cert:
+      ensure            => file,
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0644',
+      content           => hiera('elk_stack_elastic_cert')
+    }
+
+    file { "/etc/nginx/conf.d/kibana.conf":
+      ensure            => file,
+      owner             => 'root',
+      group             => 'root',
+      mode              => '0644',
+      content           => template('/kibana/nginx-kibana_conf.erb'),
+    }
+
   }
 
 
