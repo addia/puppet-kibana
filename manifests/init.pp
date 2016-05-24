@@ -69,10 +69,6 @@ class kibana (
   class { 'kibana4':
     version                      => $version,
     package_repo_version         => $repo_version,
-    autoupgrade                  => $auto_upgrade,
-    java_install                 => $java_manage,
-    java_package                 => $java_pkg,
-    datadir                      => $data_dir,
     config                       => {
       'server.port'                  => 5601,
       'server.host'                  => '0.0.0.0',
