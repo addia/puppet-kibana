@@ -10,23 +10,23 @@
 # ===========================
 #
 class kibana::install (
-  $version                       = $kibana4::params::version,
-  $repo_version                  = $kibana4::params::repo_version,
-  $elk_ca_root                   = $kibana4::params::elk_ca_root,
-  $elastic_url                   = $kibana4::params::elastic_url,
-  $elastic_cert                  = $kibana4::params::elastic_cert,
-  $elastic_key                   = $kibana4::params::elastic_key,
-  $elastic_password              = $kibana4::params::elastic_password,
-  $elastic_username              = $kibana4::params::elastic_username,
-  $kibana_index                  = $kibana4::params::kibana_index,
-  $kibana_defaultAppId           = $kibana4::params::kibana_defaultAppId,
-  $kibana_pidfile                = $kibana4::params::kibana_pidfile,
-  $kibana_logfile                = $kibana4::params::kibana_logfile,
-  $kibana_port                   = $kibana4::params::kibana_port,
-  $elastic_verify                = $kibana4::params::elastic_verify,
-  $elastic_ca                    = $kibana4::params::elastic_ca,
-  $server_key                    = $kibana4::params::server_key,
-  $server_cert                   = $kibana4::params::server_cert
+  $version                       = $kibana::params::version,
+  $repo_version                  = $kibana::params::repo_version,
+  $elk_ca_root                   = $kibana::params::elk_ca_root,
+  $elastic_url                   = $kibana::params::elastic_url,
+  $elastic_cert                  = $kibana::params::elastic_cert,
+  $elastic_key                   = $kibana::params::elastic_key,
+  $elastic_password              = $kibana::params::elastic_password,
+  $elastic_username              = $kibana::params::elastic_username,
+  $kibana_index                  = $kibana::params::kibana_index,
+  $kibana_defaultAppId           = $kibana::params::kibana_defaultAppId,
+  $kibana_pidfile                = $kibana::params::kibana_pidfile,
+  $kibana_logfile                = $kibana::params::kibana_logfile,
+  $kibana_port                   = $kibana::params::kibana_port,
+  $elastic_verify                = $kibana::params::elastic_verify,
+  $elastic_ca                    = $kibana::params::elastic_ca,
+  $server_key                    = $kibana::params::server_key,
+  $server_cert                   = $kibana::params::server_cert
 ) inherits kibana::params {
 
   notify { "## --->>> Installing package: ${package_name}": }

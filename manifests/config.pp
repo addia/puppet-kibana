@@ -10,26 +10,26 @@
 # ===========================
 #
 class kibana::config (
-  $service_ensure                = $kibana4::params::service_ensure,
-  $service_enable                = $kibana4::params::service_enable,
-  $service_name                  = $kibana4::params::service_name,
-  $elastic_vip                   = $kibana4::params::elastic_vip,
-  $elastic_url                   = $kibana4::params::elastic_url,
-  $elastic_cert                  = $kibana4::params::elastic_cert,
-  $elastic_key                   = $kibana4::params::elastic_key,
-  $elastic_password              = $kibana4::params::elastic_password,
-  $elastic_username              = $kibana4::params::elastic_username,
-  $kibana_server                 = $kibana4::params::kibana_server,
-  $kibana_server_ip              = $kibana4::params::kibana_server_ip,
-  $kibana_index                  = $kibana4::params::kibana_index,
-  $kibana_defaultAppId           = $kibana4::params::kibana_defaultAppId,
-  $kibana_pidfile                = $kibana4::params::kibana_pidfile,
-  $kibana_logfile                = $kibana4::params::kibana_logfile,
-  $elastic_verify                = $kibana4::params::elastic_verify,
-  $elastic_ca                    = $kibana4::params::elastic_ca,
-  $server_key                    = $kibana4::params::server_key,
-  $server_cert                   = $kibana4::params::server_cert,
-  $tmpfile                       = $kibana4::params::tmpfile
+  $service_ensure                = $kibana::params::service_ensure,
+  $service_enable                = $kibana::params::service_enable,
+  $service_name                  = $kibana::params::service_name,
+  $elastic_vip                   = $kibana::params::elastic_vip,
+  $elastic_url                   = $kibana::params::elastic_url,
+  $elastic_cert                  = $kibana::params::elastic_cert,
+  $elastic_key                   = $kibana::params::elastic_key,
+  $elastic_password              = $kibana::params::elastic_password,
+  $elastic_username              = $kibana::params::elastic_username,
+  $kibana_server                 = $kibana::params::kibana_server,
+  $kibana_server_ip              = $kibana::params::kibana_server_ip,
+  $kibana_index                  = $kibana::params::kibana_index,
+  $kibana_defaultAppId           = $kibana::params::kibana_defaultAppId,
+  $kibana_pidfile                = $kibana::params::kibana_pidfile,
+  $kibana_logfile                = $kibana::params::kibana_logfile,
+  $elastic_verify                = $kibana::params::elastic_verify,
+  $elastic_ca                    = $kibana::params::elastic_ca,
+  $server_key                    = $kibana::params::server_key,
+  $server_cert                   = $kibana::params::server_cert,
+  $tmpfile                       = $kibana::params::tmpfile
 ) inherits kibana::params {
 
   notify { "## --->>> Configuring package: ${package_name}": }
@@ -56,7 +56,7 @@ class kibana::config (
     mode              => '0755',
     }
 
-  file { "$tmpfile":
+  file { $tmpfile:
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -78,7 +78,7 @@ class kibana::config (
     mode              => '0755',
     }
 
-  file { "$server_key":
+  file { $server_key:
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -86,7 +86,7 @@ class kibana::config (
     content           => hiera('elk_stack_kibana_key')
     }
 
-  file { "$server_cert":
+  file { $server_cert:
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -94,7 +94,7 @@ class kibana::config (
     content           => hiera('elk_stack_kibana_cert')
     }
 
-  file { "$elastic_key":
+  file { $elastic_key:
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -102,7 +102,7 @@ class kibana::config (
     content           => hiera('elk_stack_elastic_key')
     }
 
-  file { "$elastic_cert":
+  file { $elastic_cert:
     ensure            => file,
     owner             => 'root',
     group             => 'root',
