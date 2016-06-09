@@ -83,8 +83,7 @@ class kibana (
 
     anchor { 'kibana::begin': } ->
     class { '::kibana::install': } ->
-    class { '::kibana::config': } ~>
-    class { '::kibana::service': } ->
+    class { '::kibana::config': }
     anchor { 'kibana::end': }
 
 }
