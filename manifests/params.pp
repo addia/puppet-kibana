@@ -17,6 +17,7 @@ class kibana::params {
   $service_enable                = 'true'
   $service_name                  = 'kibana'
   $elastic_vip                   = hiera('elk_stack_elastic_address')
+  $elastic_vip_ip                = hiera('elk_stack_elastic_ip')
   $elastic_url                   = "http://els_cluster:9200"
   $elastic_cert                  = '/etc/nginx/ssl/elastic.crt'
   $elastic_key                   = '/etc/nginx/ssl/elastic.key'

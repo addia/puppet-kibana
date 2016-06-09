@@ -16,7 +16,8 @@
 #   service_ensure               = start the Kibana4 serve
 #   service_enable               = enable on reboot
 #   service_name                 = the service name
-#   elastic_vip                  = the vip IP of the elastic cluster
+#   elastic_vip                  = the vip Name of the elastic cluster
+#   elastic_vip_ip               = the vip IP of the elastic cluster
 #   elastic_url                  = the url of the elastic cluster
 #   elastic_cert                 = full path of the elastic certificate
 #   elastic_key                  = full path of the elastic key
@@ -59,6 +60,7 @@ class kibana (
   $service_enable                = $kibana::params::service_enable,
   $service_name                  = $kibana::params::service_name,
   $elastic_vip                   = $kibana::params::elastic_vip,
+  $elastic_vip_ip                = $kibana::params::elastic_vip_ip,
   $elastic_url                   = $kibana::params::elastic_url,
   $elastic_cert                  = $kibana::params::elastic_cert,
   $elastic_key                   = $kibana::params::elastic_key,
