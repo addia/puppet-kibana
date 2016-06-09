@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.require_version ">= 1.7.4"
-Vagrant.configure(2) do | global |
-  global.vbguest.auto_update = false
-end
+# Vagrant.configure(2) do | global |
+  # global.vbguest.auto_update = false
+# end
 
 Vagrant.configure(2) do |config|
   config.vm.box = "landregistry/centos"

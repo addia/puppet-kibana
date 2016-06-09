@@ -1,2 +1,2 @@
 #
-include kibana
+$ hiera kibana -y facts.yaml
