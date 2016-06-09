@@ -12,8 +12,8 @@
 class kibana::install (
   $version                       = $kibana4::params::version,
   $repo_version                  = $kibana4::params::repo_version,
-  $elk_ca_cert                   = $kibana4::params::elk_ca_cert,
-  $elastic_url                   = $kibana4::params::elastic_url,
+  $elk_ca_root                   = $kibana4::params::elk_ca_root,
+  $elastic_url                   = $kibana4::params::elastic_urelk_ca_root
   $elastic_cert                  = $kibana4::params::elastic_cert,
   $elastic_key                   = $kibana4::params::elastic_key,
   $elastic_password              = $kibana4::params::elastic_password,
@@ -77,14 +77,14 @@ class kibana::install (
     mail                             => false,
     }
 
-  class { 'selinux::port':
+  selinux::port { 'allow_kibana_port':
     context                          => 'http_port_t',
     port                             => $kibana_port,
     protocol                         => 'tcp',
     }
 
-  class { 'ca_cert::ca':
-    ca_text                          => $elk_ca_cert,
+  oa_cert::ca { 'adding_elk_cert':
+    ca_text                          => $elk_ca_root,
     ensure                           => 'trusted',
     source                           => hiera('elk_ca_cert'),
     }
