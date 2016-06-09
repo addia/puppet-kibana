@@ -83,7 +83,7 @@ class kibana::install (
     protocol                         => 'tcp',
     }
 
-  oa_cert::ca { 'adding_elk_cert':
+  ca_cert::ca { 'adding_elk_cert':
     ca_text                          => $elk_ca_root,
     ensure                           => 'trusted',
     source                           => hiera('elk_ca_cert'),
