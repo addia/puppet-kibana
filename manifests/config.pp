@@ -56,7 +56,7 @@ class kibana::config (
     mode              => '0755',
     }
 
-  file { $tmpfile:
+  file { "$tmpfile":
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -78,7 +78,7 @@ class kibana::config (
     mode              => '0755',
     }
 
-  file { $server_key:
+  file { "$server_key":
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -86,7 +86,7 @@ class kibana::config (
     content           => hiera('elk_stack_kibana_key')
     }
 
-  file { $server_cert:
+  file { "$server_cert":
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -94,7 +94,7 @@ class kibana::config (
     content           => hiera('elk_stack_kibana_cert')
     }
 
-  file { $elastic_key:
+  file { "$elastic_key":
     ensure            => file,
     owner             => 'root',
     group             => 'root',
@@ -102,7 +102,7 @@ class kibana::config (
     content           => hiera('elk_stack_elastic_key')
     }
 
-  file { $elastic_cert:
+  file { "$elastic_cert":
     ensure            => file,
     owner             => 'root',
     group             => 'root',
