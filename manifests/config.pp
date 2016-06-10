@@ -36,6 +36,14 @@ class kibana::config (
   notify { "## --->>> Configuring package: ${package_name}": }
 
 
+  user { 'kibana':
+    ensure            => 'present',
+    shell             => '/bin/bash',
+    gid               => $uid,
+    password          => '!!',
+    managehome        => true,
+  }
+
   host { "ops-es-cluster":
     ensure            => 'present',
     target            => '/etc/hosts',
