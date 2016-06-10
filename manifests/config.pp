@@ -70,7 +70,7 @@ class kibana::config (
     owner             => 'root',
     group             => 'root',
     mode              => '0644',
-    source            => "puppet:///modules/kibana4/tmpfiles_kibana.conf",
+    source            => "puppet:///modules/kibana/tmpfiles_kibana.conf",
     }
 
   file { "/var/log/kibana/kibana.log":
