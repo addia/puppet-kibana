@@ -10,31 +10,31 @@
 # ===========================
 #
 class kibana::install (
-  $version                       = $kibana::params::version,
-  $repo_version                  = $kibana::params::repo_version,
-  $elk_ca_root                   = $kibana::params::elk_ca_root,
-  $elastic_url                   = $kibana::params::elastic_url,
-  $elastic_cert                  = $kibana::params::elastic_cert,
-  $elastic_key                   = $kibana::params::elastic_key,
-  $elastic_password              = $kibana::params::elastic_password,
-  $elastic_username              = $kibana::params::elastic_username,
-  $kibana_index                  = $kibana::params::kibana_index,
-  $kibana_defaultAppId           = $kibana::params::kibana_defaultAppId,
-  $kibana_pidfile                = $kibana::params::kibana_pidfile,
-  $kibana_logfile                = $kibana::params::kibana_logfile,
-  $kibana_port                   = $kibana::params::kibana_port,
-  $elastic_verify                = $kibana::params::elastic_verify,
-  $elastic_ca                    = $kibana::params::elastic_ca,
-  $server_key                    = $kibana::params::server_key,
-  $server_cert                   = $kibana::params::server_cert
+  $version                           = $kibana::params::version,
+  $repo_version                      = $kibana::params::repo_version,
+  $elk_ca_root                       = $kibana::params::elk_ca_root,
+  $elastic_url                       = $kibana::params::elastic_url,
+  $elastic_cert                      = $kibana::params::elastic_cert,
+  $elastic_key                       = $kibana::params::elastic_key,
+  $elastic_password                  = $kibana::params::elastic_password,
+  $elastic_username                  = $kibana::params::elastic_username,
+  $kibana_index                      = $kibana::params::kibana_index,
+  $kibana_defaultAppId               = $kibana::params::kibana_defaultAppId,
+  $kibana_pidfile                    = $kibana::params::kibana_pidfile,
+  $kibana_logfile                    = $kibana::params::kibana_logfile,
+  $kibana_port                       = $kibana::params::kibana_port,
+  $elastic_verify                    = $kibana::params::elastic_verify,
+  $elastic_ca                        = $kibana::params::elastic_ca,
+  $server_key                        = $kibana::params::server_key,
+  $server_cert                       = $kibana::params::server_cert
 ) inherits kibana::params {
 
   notify { "## --->>> Installing package: ${package_name}": }
 
   class { 'kibana4':
-    version                      => $version,
-    package_repo_version         => $repo_version,
-    config                       => {
+    version                          => $version,
+    package_repo_version             => $repo_version,
+    config                           => {
       'server.port'                  => $kibana_port,
       'server.host'                  => '0.0.0.0',
       'elasticsearch.url'            => $elastic_url,
@@ -81,12 +81,6 @@ class kibana::install (
     context                          => 'http_port_t',
     port                             => $kibana_port,
     protocol                         => 'tcp',
-    }
-
-  ca_cert::ca { 'adding_elk_cert':
-    ca_text                          => $elk_ca_root,
-    ensure                           => 'trusted',
-    source                           => "puppet:///modules/kibana/elk_ca.cert",
     }
 
   }
