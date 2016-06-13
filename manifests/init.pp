@@ -23,7 +23,6 @@
 #   elastic_key                  = full path of the elastic key
 #   elastic_password             = elastic search password
 #   elastic_username             = elastic search username
-#   elk_ca_root                  = certificate CA for trust import
 #   kibana_server                = kibana server address
 #   kibana_server_ip             = kibana server IP address
 #   kibana_port                  = kibana local port
@@ -66,7 +65,6 @@ class kibana (
   $elastic_key                   = $kibana::params::elastic_key,
   $elastic_password              = $kibana::params::elastic_password,
   $elastic_username              = $kibana::params::elastic_username,
-  $elk_ca_root                   = $kibana::params::elk_ca_root,
   $kibana_server                 = $kibana::params::kibana_server,
   $kibana_server_ip              = $kibana::params::kibana_server_ip,
   $kibana_port                   = $kibana::params::kibana_port,

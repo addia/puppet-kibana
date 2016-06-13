@@ -23,7 +23,6 @@ class kibana::params {
   $elastic_key                   = '/etc/nginx/ssl/elastic.key'
   $elastic_password              = 'welcome1'
   $elastic_username              = 'webops'
-  $elk_ca_root                   = 'elk_ca.cert'
   $kibana_server                 = hiera('elk_stack_kibana_address')
   $kibana_server_ip              = hiera('elk_stack_kibana_ip')
   $kibana_port                   = hiera('elk_stack_kibana_port')

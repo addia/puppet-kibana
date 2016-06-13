@@ -12,7 +12,6 @@
 class kibana::install (
   $version                           = $kibana::params::version,
   $repo_version                      = $kibana::params::repo_version,
-  $elk_ca_root                       = $kibana::params::elk_ca_root,
   $elastic_url                       = $kibana::params::elastic_url,
   $elastic_cert                      = $kibana::params::elastic_cert,
   $elastic_key                       = $kibana::params::elastic_key,
