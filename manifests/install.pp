@@ -71,8 +71,8 @@ class kibana::install (
     }
 
   class { 'nginx' :
-    confd_purge                      => true,
-    vhost_purge                      => true,
+    confd_purge                      => false,
+    vhost_purge                      => false,
     mail                             => false,
     }
 
