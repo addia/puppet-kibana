@@ -83,7 +83,20 @@ class kibana::install (
     protocol                         => 'tcp',
     }
 
-  }
+  file { "/etc/nginx/conf.d/kibana.conf":
+    ensure                           => file,
+    owner                            => 'root',
+    group                            => 'root',
+    mode                             => '0644',
+    content                          => template('kibana/nginx_kibana_conf.erb'),
+    notify                           => Service[nginx]
+    }
 
+  exec { "fix the owner of /opt/kibana":
+    command                          => "chown -R kibana:kibana /opt/kibana",
+    path                             => "/sbin:/bin:/usr/sbin:/usr/bin",
+    }
+
+  }
 
 # vim: set ts=2 sw=2 et :

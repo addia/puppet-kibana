@@ -39,7 +39,7 @@ class kibana::config (
   user { 'kibana':
     ensure            => 'present',
     shell             => '/bin/bash',
-    gid               => $uid,
+    home              => '/opt/kibana',
     password          => '!!',
     managehome        => true,
   }
@@ -117,14 +117,6 @@ class kibana::config (
     group             => 'root',
     mode              => '0644',
     content           => hiera('elk_stack_elastic_cert')
-    }
-
-  file { "/etc/nginx/conf.d/kibana.conf":
-    ensure            => file,
-    owner             => 'root',
-    group             => 'root',
-    mode              => '0644',
-    content           => template('kibana/nginx_kibana_conf.erb')
     }
 
   }
