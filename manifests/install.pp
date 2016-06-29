@@ -75,6 +75,7 @@ class kibana::install (
     confd_purge                      => false,
     vhost_purge                      => false,
     mail                             => false,
+    stream                           => false,
     }
 
   selinux::port { 'allow_kibana_port':
