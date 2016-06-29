@@ -13,9 +13,7 @@
 #   Explanation of what this parameter affects and what it defaults to.
 #   version                      = Kibana4 version to install
 #   repo_version                 = Kibana4 repo version
-#   service_ensure               = start the Kibana4 serve
-#   service_enable               = enable on reboot
-#   service_name                 = the service name
+#   package_name                 = the Kibana4 package name
 #   elastic_vip                  = the vip Name of the elastic cluster
 #   elastic_vip_ip               = the vip IP of the elastic cluster
 #   elastic_url                  = the url of the elastic cluster
@@ -55,9 +53,8 @@
 class kibana (
   $version                       = $kibana::params::version,
   $repo_version                  = $kibana::params::repo_version,
+  $package_name                  = $kibana::params::package_name,
   $service_ensure                = $kibana::params::service_ensure,
-  $service_enable                = $kibana::params::service_enable,
-  $service_name                  = $kibana::params::service_name,
   $elastic_vip                   = $kibana::params::elastic_vip,
   $elastic_vip_ip                = $kibana::params::elastic_vip_ip,
   $elastic_url                   = $kibana::params::elastic_url,
@@ -83,7 +80,7 @@ class kibana (
 
     anchor { 'kibana::begin': } ->
     class { '::kibana::install': } ->
-    class { '::kibana::config': }
+    class { '::kibana::config': } ~>
     anchor { 'kibana::end': }
 
 }

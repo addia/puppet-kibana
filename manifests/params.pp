@@ -13,9 +13,8 @@ class kibana::params {
 
   $version                       = 'latest'
   $repo_version                  = '4.5'
+  $package_name                  = 'kibana'
   $service_ensure                = 'true'
-  $service_enable                = 'true'
-  $service_name                  = 'kibana'
   $elastic_vip                   = hiera('elk_stack_elastic_address')
   $elastic_vip_ip                = hiera('elk_stack_elastic_ip')
   $elastic_url                   = "http://els_cluster:9200"
