@@ -79,8 +79,8 @@ class kibana (
     notify { "## --->>> Installing and configuring ${package_name}": }
 
     anchor { 'kibana::begin': } ->
-    class { '::kibana::install': } ->
     class { '::kibana::config': } ~>
+    class { '::kibana::install': } ->
     anchor { 'kibana::end': }
 
 }
