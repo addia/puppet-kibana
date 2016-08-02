@@ -14,6 +14,8 @@
 #   version                      = Kibana4 version to install
 #   repo_version                 = Kibana4 repo version
 #   package_name                 = the Kibana4 package name
+#   elastic_cluster              = the Name of the elastic cluster
+#   elastic_instance             = the instance Name of the elastic cluster
 #   elastic_vip                  = the vip Name of the elastic cluster
 #   elastic_vip_ip               = the vip IP of the elastic cluster
 #   elastic_url                  = the url of the elastic cluster
@@ -55,6 +57,8 @@ class kibana (
   $repo_version                  = $kibana::params::repo_version,
   $package_name                  = $kibana::params::package_name,
   $service_ensure                = $kibana::params::service_ensure,
+  $elastic_cluster               = $kibana::params::elastic_cluster,
+  $elastic_instance              = $kibana::params::elastic_instance,
   $elastic_vip                   = $kibana::params::elastic_vip,
   $elastic_vip_ip                = $kibana::params::elastic_vip_ip,
   $elastic_url                   = $kibana::params::elastic_url,

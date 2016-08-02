@@ -13,6 +13,8 @@ class kibana::config (
   $service_ensure                = $kibana::params::service_ensure,
   $service_enable                = $kibana::params::service_enable,
   $service_name                  = $kibana::params::service_name,
+  $elastic_cluster               = $kibana::params::elastic_cluster,
+  $elastic_instance              = $kibana::params::elastic_instance,
   $elastic_vip                   = $kibana::params::elastic_vip,
   $elastic_vip_ip                = $kibana::params::elastic_vip_ip,
   $elastic_url                   = $kibana::params::elastic_url,
@@ -44,11 +46,11 @@ class kibana::config (
     managehome        => true,
   }
 
-  host { "ops-es-cluster":
+  host { $elastic_cluster:
     ensure            => 'present',
     target            => '/etc/hosts',
     ip                => $elastic_vip_ip,
-    host_aliases      => 'els_cluster'
+    host_aliases      => $elastic_instance,
     }
 
   file { "/run/kibana":
