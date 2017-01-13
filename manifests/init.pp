@@ -53,32 +53,34 @@
 #
 #
 class kibana (
-  $version                       = $kibana::params::version,
-  $repo_version                  = $kibana::params::repo_version,
-  $package_name                  = $kibana::params::package_name,
-  $service_ensure                = $kibana::params::service_ensure,
-  $elastic_cluster               = $kibana::params::elastic_cluster,
-  $elastic_instance              = $kibana::params::elastic_instance,
-  $elastic_vip                   = $kibana::params::elastic_vip,
-  $elastic_vip_ip                = $kibana::params::elastic_vip_ip,
-  $elastic_url                   = $kibana::params::elastic_url,
-  $elastic_cert                  = $kibana::params::elastic_cert,
-  $elastic_key                   = $kibana::params::elastic_key,
-  $elastic_password              = $kibana::params::elastic_password,
-  $elastic_username              = $kibana::params::elastic_username,
-  $kibana_server                 = $kibana::params::kibana_server,
-  $kibana_server_ip              = $kibana::params::kibana_server_ip,
-  $kibana_port                   = $kibana::params::kibana_port,
-  $kibana_index                  = $kibana::params::kibana_index,
-  $kibana_defaultAppId           = $kibana::params::kibana_defaultAppId,
-  $kibana_pidfile                = $kibana::params::kibana_pidfile,
-  $kibana_logfile                = $kibana::params::kibana_logfile,
-  $elastic_verify                = $kibana::params::elastic_verify,
-  $elastic_ca                    = $kibana::params::elastic_ca,
-  $server_key                    = $kibana::params::server_key,
-  $server_cert                   = $kibana::params::server_cert,
-  $tmpfile                       = $kibana::params::tmpfile
-) inherits kibana::params {
+  $version             = $kibana::params::version,
+  $repo_version        = $kibana::params::repo_version,
+  $package_name        = $kibana::params::package_name,
+  $service_ensure      = $kibana::params::service_ensure,
+  $elastic_cluster     = $kibana::params::elastic_cluster,
+  $elastic_instance    = $kibana::params::elastic_instance,
+  $elastic_vip         = $kibana::params::elastic_vip,
+  $elastic_vip_ip      = $kibana::params::elastic_vip_ip,
+  $elastic_url         = $kibana::params::elastic_url,
+  $elastic_cert        = $kibana::params::elastic_cert,
+  $elastic_key         = $kibana::params::elastic_key,
+  $elastic_password    = $kibana::params::elastic_password,
+  $elastic_username    = $kibana::params::elastic_username,
+  $kibana_server       = $kibana::params::kibana_server,
+  $kibana_server_ip    = $kibana::params::kibana_server_ip,
+  $kibana_port         = $kibana::params::kibana_port,
+  $kibana_index        = $kibana::params::kibana_index,
+  $kibana_defaultappid = $kibana::params::kibana_defaultappid,
+  $kibana_pidfile      = $kibana::params::kibana_pidfile,
+  $kibana_logfile      = $kibana::params::kibana_logfile,
+  $elastic_verify      = $kibana::params::elastic_verify,
+  $elastic_ca          = $kibana::params::elastic_ca,
+  $server_key          = $kibana::params::server_key,
+  $server_cert         = $kibana::params::server_cert,
+  $tmpfile             = $kibana::params::tmpfile
+  ) {
+
+  include kibana::params
 
     notify { "## --->>> Installing and configuring ${package_name}": }
 
